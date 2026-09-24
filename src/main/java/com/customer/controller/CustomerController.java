@@ -1,5 +1,7 @@
 package com.customer.controller;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -21,9 +23,11 @@ public class CustomerController {
     }
 
     @GetMapping("/customer")
-    public ResponseEntity<?> getById(@RequestParam(name = "id") Integer id) {
-        Customer customer = customerService.getCustomer();
-        return new ResponseEntity<>(customer, HttpStatus.OK);
+    public ResponseEntity<?> getById() {
+
+        List<Customer> list = customerService.findAll();
+
+        return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
 }

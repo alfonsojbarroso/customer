@@ -1,19 +1,27 @@
 package com.customer.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.customer.dto.Customer;
+import com.customer.model.CustomerModel;
+import com.customer.repository.CustomerRepository;
 
 @Service
 public class CustomerService {
 
-    public Customer getCustomer() {
-        return Customer.builder()
-                .id(1)
-                .name("GORGONIO")
-                .phone("1234567890")
-                .eMail("gorgonio@buzon.com")
-                .build();
+
+    // Jespus Eduardo Aceves Aguirre : Agregar en el moodle
+
+    private final CustomerRepository customerRepository;
+
+    public CustomerService(CustomerRepository customerRepository) {
+        this.customerRepository = customerRepository;
+    }
+
+    public List<Customer> findAll() {
+        return customerRepository.findAll().stream().map(CustomerModel::toDto).toList();
     }
 
 }
