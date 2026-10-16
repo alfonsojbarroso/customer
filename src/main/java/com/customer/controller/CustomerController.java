@@ -27,13 +27,13 @@ public class CustomerController {
     @GetMapping("/customer")
     public ResponseEntity<?> getById() {
 
-        List<Customer> list = customerService.findAll();
+        List<CustomerDto> list = customerService.findAll();
 
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
     @PostMapping("/customer")
-    public ResponseEntity<?> save(@RequestBody Customer customer) {
+    public ResponseEntity<?> save(@RequestBody CustomerDto customer) {
         return new ResponseEntity<>(customerService.save(customer), HttpStatus.OK);
     }
 

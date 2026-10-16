@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.customer.dto.Customer;
+import com.customer.dto.CustomerDto;
 import com.customer.model.CustomerModel;
 import com.customer.repository.CustomerRepository;
 
@@ -19,11 +19,11 @@ public class CustomerService {
         this.customerRepository = customerRepository;
     }
 
-    public List<Customer> findAll() {
+    public List<CustomerDto> findAll() {
         return customerRepository.findAll().stream().map(CustomerModel::toDto).toList();
     }
 
-    public Customer save(Customer customer) {
+    public CustomerDto save(CustomerDto customer) {
         return customerRepository.save(customer.toModel()).toDto();
     }
 
