@@ -11,7 +11,6 @@ import com.customer.repository.CustomerRepository;
 @Service
 public class CustomerService {
 
-    // Jespus Eduardo Aceves Aguirre : Agregar en el moodle
 
     private final CustomerRepository customerRepository;
 
