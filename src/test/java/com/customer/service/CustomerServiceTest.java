@@ -1,9 +1,12 @@
 package com.customer.service;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -34,6 +37,19 @@ public class CustomerServiceTest {
         when(customerRepository.findAll()).thenReturn(models);
         List<CustomerDto> dtos = customerService.findAll();
         assertThat(dtos).hasSize(2);
+    }
+
+    @Test
+    public void createNewCustomer() {
+        CustomerDto customerDto = new CustomerDto(1, "Tarja Turunen", "+51 123 11 22 33");
+        CustomerModel customer = new CustomerModel(1, "Tarja Turunen", "+51 123 11 22 33");
+
+        when(customerRepository.save(any(CustomerModel.class))).thenReturn(customer);
+
+        CustomerDto dto = customerService.save(customerDto);
+
+        assertEquals(customer.toDto(), dto);
+
     }
 
 }
